@@ -8,7 +8,7 @@
   
   <p>Laboratorio guiado: Análisis de Sentimiento con OCI Language + Autonomous Database + Agent Factory</p>
   
-  <a style="font-size:large;" href="files/notebook.ipynb">👨🏽‍💻 Ver Notebook »</a>
+  <a style="font-size:large;" href="https://objectstorage.us-chicago-1.oraclecloud.com/n/axzs95biupm2/b/labs/o/lab.zip">📄 Ver Files »</a>
   <br/>
   <a href="https://www.youtube.com/watch?v=zIxA0ebo2v4&list=PLMUWTQHw13gZlzbOKtsJwXOGizrOCsOkx">🎬 Ver Video Tutorial</a>
   ·
