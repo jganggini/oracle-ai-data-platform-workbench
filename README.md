@@ -306,31 +306,33 @@ En Oracle Autonomous Database > Database Actions > SQL Worksheet, pega el script
 Puedes copiar y ejecutar este SQL en Database Actions (cambia `<tu-contraseña>` por la contraseña del usuario):
 
 ```sql
--- 1. Crear usuario
-CREATE USER APP_AIDP IDENTIFIED BY "<tu-contraseña>";
-GRANT CONNECT, RESOURCE TO APP_AIDP;
-GRANT UNLIMITED TABLESPACE TO APP_AIDP;
-GRANT CREATE TABLE TO APP_AIDP;
-GRANT CREATE VIEW TO APP_AIDP;
-GRANT CREATE SEQUENCE TO APP_AIDP;
-GRANT CREATE PROCEDURE TO APP_AIDP;
-GRANT CREATE SESSION TO APP_AIDP;
+--1. Create User for AIDP
+CREATE USER app_aidp IDENTIFIED BY <pass> DEFAULT TABLESPACE DATA QUOTA UNLIMITED ON DATA;
+GRANT CONNECT, RESOURCE, CREATE TABLE, CREATE VIEW, CREATE SEQUENCE, CREATE TRIGGER, CREATE PROCEDURE TO app_aidp;
+GRANT CREATE SESSION TO app_aidp;
+/
 
--- 2. Crear tabla para almacenar resultados
-CREATE TABLE APP_AIDP.INTERACTIONS_ANALYSIS (
-    reply_id VARCHAR2(50) PRIMARY KEY,
-    username VARCHAR2(100),
-    user_name VARCHAR2(200),
-    text CLOB,
-    category VARCHAR2(50),
-    severity_level VARCHAR2(20),
-    toxicity_score NUMBER(10,2),
-    oci_sentiment VARCHAR2(20),
-    oci_negative NUMBER(10,4),
-    oci_positive NUMBER(10,4),
-    oci_neutral NUMBER(10,4),
-    created_at VARCHAR2(50)
+--2. Create table for analysis AIDP
+CREATE TABLE app_aidp.interactions_analysis (
+    reply_id        VARCHAR2(100)   NOT NULL,
+    username        VARCHAR2(100),
+    user_name       VARCHAR2(200),
+    text            CLOB,
+    category        VARCHAR2(50),
+    severity_level  VARCHAR2(20),
+    toxicity_score  NUMBER(10,2),
+    oci_sentiment   VARCHAR2(20),
+    oci_negative    NUMBER(10,4),
+    oci_positive    NUMBER(10,4),
+    oci_neutral     NUMBER(10,4),
+    created_at      VARCHAR2(50),
+
+    CONSTRAINT pk_interactions_analysis
+        PRIMARY KEY (reply_id)
 );
+
+--3. Select
+select * from app_aidp.interactions_analysis;
 ```
 
 ![img34](./img/img34.png)
